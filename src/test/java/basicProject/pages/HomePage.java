@@ -5,19 +5,26 @@ import org.openqa.selenium.JavascriptExecutor;
 
 public class HomePage extends BasePage {
 
-    public void chooseProduct() {
+    public void scrollDownPage() {
+        ((JavascriptExecutor) driver).executeScript("scroll(0,500)");
         try {
-            Thread.sleep(5000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-            ((JavascriptExecutor) driver).executeScript("scroll(0,900)");
-            driver.findElement(By.xpath("//span[@content='1278,99']")).click();
         }
     }
 
+    public void chooseProduct() {
+        driver.findElement(By.xpath("//div[@class='sn-product-inner ks-gtm-categories']")).click();
+    }
+
     public void addProductToCart() {
-        ((JavascriptExecutor) driver).executeScript("scroll(0,150)");
-        driver.findElement(By.xpath("//button[@id='add_to_cart_btn']")).click();
+        driver.findElement(By.id("add_to_cart_btn")).click();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void goToCart() {
@@ -29,11 +36,11 @@ public class HomePage extends BasePage {
     }
 
     public void enterAuthenticationData() {
-        driver.findElement(By.xpath("//input[@class='users-session-form__input users-session-form__input--text']")).click();
+        driver.findElement(By.id("user_email")).sendKeys("workjob@inbox.lv");
+        driver.findElement(By.id("user_password")).sendKeys("FinalProject2022");
     }
 
     public void clickContinueButton() {
-        driver.findElement(By.xpath("//input[@class='users-session-form__submit']")).click();
+        driver.findElement(By.xpath("//input[@value='Pievienoties']")).click();
     }
-
 }

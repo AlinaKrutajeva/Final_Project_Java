@@ -1,9 +1,9 @@
-//package basicProject.models;
-//
-//import lombok.Data;
-//
-//@Data
-//public class Product {
-//    String productName;
-//    String productPrice;
-//}
+package basicProject.models;
+
+import lombok.Data;
+
+@Data
+public class Product {
+    String productName;
+    String productPrice;
+}

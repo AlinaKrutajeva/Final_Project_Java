@@ -1,11 +1,10 @@
-//package basicProject.models;
-//
-//import lombok.Getter;
-//
-//@Getter
-//public class User {
-//    String email = "workjob@inbox.lv";
-//    String name = "Alina";
-//    String surname = "K";
-//    String phone = "+23456789";
-//}
+package basicProject.models;
+
+import lombok.Getter;
+
+@Getter
+public class User {
+    String userName = "Alina";
+    String userSurname = "K";
+    String userPhone = "23456789";
+}

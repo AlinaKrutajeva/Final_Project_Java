@@ -1,12 +1,17 @@
 package basicProject;
 
+import basicProject.models.Product;
+import basicProject.models.User;
 import basicProject.pages.BasePage;
 import basicProject.pages.HomePage;
 import basicProject.pages.SearchPage;
 import basicProject.pages.ShippingPage;
-import org.junit.After;
+import org.junit.BeforeClass;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.After;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestRunner {
 
@@ -15,39 +20,48 @@ public class TestRunner {
     SearchPage searchPage = new SearchPage();
     ShippingPage shippingPage = new ShippingPage();
 
+    static Product product = new Product();
+    User user = new User();
+
+    @BeforeClass
+    public static void chosenProduct() {
+        product.setProductName("Bezvadu austiņas Beats Studio3 Wireless, zila");
+        product.setProductPrice("288,97 €");
+    }
+
     @Before
     public void openBrowser(){
         basePage.openChromeByUrl("https://www.1a.lv/");
     }
 
-//    Product product = new Product();
-//    static User user = new User();
-
     @Test
     public void aLvTest() {
-        searchPage.enterProductBrandName("Lenovo");
+        searchPage.enterProductType("Zilas beats studio wireless");
         searchPage.clickOnSearchButton();
+        homePage.scrollDownPage();
         homePage.chooseProduct();
-//        save
+        homePage.scrollDownPage();
         homePage.addProductToCart();
         homePage.goToCart();
+        assertThat(product.getProductName()).isEqualTo("Bezvadu austiņas Beats Studio3 Wireless, zila");
+        assertThat(product.getProductPrice()).isEqualTo("288,97 €");
         homePage.clickInCartContinueButton();
+        homePage.scrollDownPage();
         homePage.enterAuthenticationData();
         homePage.clickContinueButton();
-//        validate
         shippingPage.chooseShippingType();
         shippingPage.chooseStoreAddress();
-        shippingPage.enterName("Alina");
-        shippingPage.enterSurname("K");
-        shippingPage.enterPhoneNumber("23456789");
+        shippingPage.enterUserInformation(user.getUserName(), user.getUserSurname(), user.getUserPhone());
         shippingPage.validateNameSurnamePhoneNumber();
-//        validate product price
-
+        shippingPage.scrollUpPage();
+        assertThat(product.getProductPrice()).isEqualTo("288,97 €");
+        shippingPage.validateShippingPageUrl();
     }
+
         @After
         public void closeBrowser(){
             try {
-                Thread.sleep(5000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
