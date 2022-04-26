@@ -13,7 +13,7 @@ import org.junit.After;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class TestRunner {
+public class FinalProjectBasicLevel {
 
     BasePage basePage = new BasePage();
     HomePage homePage = new HomePage();
@@ -39,7 +39,7 @@ public class TestRunner {
         searchPage.enterProductType("Zilas beats studio wireless");
         searchPage.clickOnSearchButton();
         homePage.scrollDownPage();
-        homePage.chooseProduct();
+        homePage.chooseBeatsStudioProduct();
         homePage.scrollDownPage();
         homePage.addProductToCart();
         homePage.goToCart();
@@ -47,12 +47,14 @@ public class TestRunner {
         assertThat(product.getProductPrice()).isEqualTo("288,97 €");
         homePage.clickInCartContinueButton();
         homePage.scrollDownPage();
-        homePage.enterAuthenticationData();
+        homePage.enterAuthenticationData("workjob@inbox.lv", "FinalProject2022");
         homePage.clickContinueButton();
         shippingPage.chooseShippingType();
         shippingPage.chooseStoreAddress();
         shippingPage.enterUserInformation(user.getUserName(), user.getUserSurname(), user.getUserPhone());
-        shippingPage.validateNameSurnamePhoneNumber();
+        assertThat(user.getUserName()).isEqualTo("Alina");
+        assertThat(user.getUserSurname()).isEqualTo("K");
+        assertThat(user.getUserPhone()).isEqualTo("23456789");
         shippingPage.scrollUpPage();
         assertThat(product.getProductPrice()).isEqualTo("288,97 €");
         shippingPage.validateShippingPageUrl();

@@ -27,20 +27,11 @@ public class ShippingPage extends BasePage {
         driver.findElement(userName).sendKeys(name);
         driver.findElement(userSurname).sendKeys(surname);
         driver.findElement(userPhoneNumber).sendKeys(phone);
-    }
-
-    public void validateNameSurnamePhoneNumber() {
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        String nameText = driver.findElement(By.id("address_first_name")).getAttribute("value");
-        assertThat(nameText).isEqualTo("Alina");
-        String surnameText = driver.findElement(By.id("address_last_name")).getAttribute("value");
-        assertThat(surnameText).isEqualTo("K");
-        String phoneText = driver.findElement(By.id("address_phone_number")).getAttribute("value");
-        assertThat(phoneText).isEqualTo("23456789");
     }
 
     public void scrollUpPage() {
