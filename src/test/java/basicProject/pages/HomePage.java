@@ -3,6 +3,7 @@ package basicProject.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 
+
 public class HomePage extends BasePage {
 
     private final By cookiesPage = By.xpath("//a[@class='c-button']");

@@ -34,8 +34,8 @@ public class FinalProjectBasicLevel {
         searchPage.clickOnSearchButton();
         homePage.scrollDownPage();
         homePage.chooseBeatsStudioProduct();
-        product.setProductName("Bezvadu austiņas Beats Studio3 Wireless, zila");
-        product.setProductPrice("288,97 €");
+        product.setProductName();
+        product.setProductPrice();
         homePage.scrollDownPage();
         homePage.addProductToCart();
         homePage.goToCart();
