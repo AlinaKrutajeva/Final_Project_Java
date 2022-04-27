@@ -6,7 +6,6 @@ import basicProject.pages.BasePage;
 import basicProject.pages.HomePage;
 import basicProject.pages.SearchPage;
 import basicProject.pages.ShippingPage;
-import org.junit.BeforeClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.After;
@@ -23,23 +22,20 @@ public class FinalProjectBasicLevel {
     static Product product = new Product();
     User user = new User();
 
-    @BeforeClass
-    public static void chosenProduct() {
-        product.setProductName("Bezvadu austiņas Beats Studio3 Wireless, zila");
-        product.setProductPrice("288,97 €");
-    }
-
     @Before
-    public void openBrowser(){
+    public void openBrowser() {
         basePage.openChromeByUrl("https://www.1a.lv/");
     }
 
     @Test
     public void aLvTest() {
+        homePage.submitCookiesPage();
         searchPage.enterProductType("Zilas beats studio wireless");
         searchPage.clickOnSearchButton();
         homePage.scrollDownPage();
         homePage.chooseBeatsStudioProduct();
+        product.setProductName("Bezvadu austiņas Beats Studio3 Wireless, zila");
+        product.setProductPrice("288,97 €");
         homePage.scrollDownPage();
         homePage.addProductToCart();
         homePage.goToCart();
@@ -61,12 +57,7 @@ public class FinalProjectBasicLevel {
     }
 
         @After
-        public void closeBrowser(){
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            basePage.closeChrome();
+        public void closeBrowser() {
+        basePage.closeChrome();
     }
 }

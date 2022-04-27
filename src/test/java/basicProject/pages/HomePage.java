@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 
 public class HomePage extends BasePage {
 
+    private final By cookiesPage = By.xpath("//a[@class='c-button']");
     private final By beatsStudioProduct = By.xpath("//div[@class='sn-product-inner ks-gtm-categories']");
     private final By beatsStudioInCart = By.id("add_to_cart_btn");
     private final By cartWithProduct = By.xpath("//a[@class='main-button']");
@@ -21,6 +22,10 @@ public class HomePage extends BasePage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void submitCookiesPage() {
+        driver.findElement(cookiesPage).click();
     }
 
     public void chooseBeatsStudioProduct() {

@@ -1,6 +1,5 @@
 package basicProject.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class BasePage {
@@ -17,10 +16,14 @@ public class BasePage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        driver.findElement(By.xpath("//a[@class='c-button']")).click();
     }
 
     public void closeChrome() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         driver.quit();
     }
 }
