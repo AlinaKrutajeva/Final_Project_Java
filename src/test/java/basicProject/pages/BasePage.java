@@ -7,7 +7,7 @@ public class BasePage {
     public static ChromeDriver driver;
 
     public void openChromeByUrl(String url) {
-        String driverPath = "C:\\Users\\a_lin\\IdeaProjects\\FinalProject\\src\\test\\resources\\features\\chromedriver.exe";
+        String driverPath = "C:\\Users\\a_lin\\IdeaProjects\\FinalProject\\src\\test\\resources\\chromedriver.exe";
         System.setProperty("webdriver.chrome.driver", driverPath);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
