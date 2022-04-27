@@ -45,8 +45,8 @@ public class FinalProjectBasicLevel {
         homePage.scrollDownPage();
         homePage.enterAuthenticationData("workjob@inbox.lv", "FinalProject2022");
         homePage.clickContinueButton();
-        shippingPage.chooseShippingType();
-        shippingPage.chooseStoreAddress();
+        shippingPage.chooseShippingType("Saņemšana klientu centrā");
+        shippingPage.chooseStoreAddress("Lucavsalas 3");
         shippingPage.enterUserInformation(user.getUserName(), user.getUserSurname(), user.getUserPhone());
         assertThat(user.getUserName()).isEqualTo("Alina");
         assertThat(user.getUserSurname()).isEqualTo("K");
