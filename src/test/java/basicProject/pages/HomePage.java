@@ -6,7 +6,6 @@ import org.openqa.selenium.JavascriptExecutor;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 public class HomePage extends BasePage {
 
     Product product = new Product();

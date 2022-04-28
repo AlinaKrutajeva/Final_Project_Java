@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.After;
 
-
 public class FinalProjectBasicLevel {
 
     BasePage basePage = new BasePage();

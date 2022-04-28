@@ -72,7 +72,7 @@ public class ShippingPage extends BasePage {
 
     public void validateFinalProductPrice() {
         String productFinalPrice = driver.findElement(finalProductPrice).getText();
-        assertThat(productFinalPrice).isEqualTo(product.productPrice);
+        assertThat(productFinalPrice).isEqualTo(product.getProductPrice());
     }
 
     public void validateShippingPageUrl() {
