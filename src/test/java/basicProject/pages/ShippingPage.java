@@ -1,11 +1,17 @@
 package basicProject.pages;
 
+import basicProject.models.Product;
+import basicProject.models.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ShippingPage extends BasePage {
+
+    User user = new User();
+    Product product = new Product();
+
     private final By shippingToAddress = By.xpath("//input[@value='1']");
     private final By shippingToOffice = By.xpath("//input[@value='2']");
     private final By shippingByInternationalPost = By.xpath("//input[@value='2']");
@@ -17,6 +23,7 @@ public class ShippingPage extends BasePage {
     private final By userName = By.id("address_first_name");
     private final By userSurname = By.id("address_last_name");
     private final By userPhoneNumber = By.id("address_phone_number");
+    private final By finalProductPrice = By.xpath("//span[@class='checkout-order-summary-total__price']");
     private final String shippingPageUrl = "https://www.1a.lv/checkout/shipping";
 
 
@@ -45,10 +52,13 @@ public class ShippingPage extends BasePage {
         ((JavascriptExecutor) driver).executeScript("scroll(0,1000)");
     }
 
-    public void enterUserInformation(String name, String surname, String phone) {
+    public void enterAndValidateUserInformation(String name, String surname, String phone) {
         driver.findElement(userName).sendKeys(name);
+        assertThat(name).isEqualTo(user.userName);
         driver.findElement(userSurname).sendKeys(surname);
+        assertThat(surname).isEqualTo(user.userSurname);
         driver.findElement(userPhoneNumber).sendKeys(phone);
+        assertThat(phone).isEqualTo(user.userPhone);
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -58,6 +68,11 @@ public class ShippingPage extends BasePage {
 
     public void scrollUpPage() {
         ((JavascriptExecutor) driver).executeScript("scroll(500,0)");
+    }
+
+    public void validateFinalProductPrice() {
+        String productFinalPrice = driver.findElement(finalProductPrice).getText();
+        assertThat(productFinalPrice).isEqualTo(product.getProductPrice());
     }
 
     public void validateShippingPageUrl() {

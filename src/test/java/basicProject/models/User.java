@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class User {
-    String userName = "Alina";
-    String userSurname = "K";
-    String userPhone = "23456789";
+    public String userName = "Alina";
+    public String userSurname = "K";
+    public String userPhone = "23456789";
 }

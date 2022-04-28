@@ -1,15 +1,24 @@
 package basicProject.pages;
 
+import basicProject.models.Product;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class HomePage extends BasePage {
 
+    Product product = new Product();
+
     private final By cookiesPage = By.xpath("//a[@class='c-button']");
     private final By beatsStudioProduct = By.xpath("//div[@class='sn-product-inner ks-gtm-categories']");
     private final By beatsStudioInCart = By.id("add_to_cart_btn");
+    private final By productNameOnPage = By.xpath("//a[@class='detailed-cart-item__name-link']");
+    private final By productPriceOnPage = By.xpath("//div[@class='detailed-cart-item__column detailed-cart-item__column--price']");
     private final By cartWithProduct = By.xpath("//a[@class='main-button']");
+    private final By checkName = By.xpath("//a[@class='detailed-cart-item__name-link']");
+    private final By checkPrice = By.xpath("//p[@class='detailed-cart-item__price']");
     private final By cartContinueButton = By.xpath("//input[@class='main-button cart-main-button']");
     private final By loginEmail = By.id("user_email");
     private final By loginPassword = By.id("user_password");
@@ -42,8 +51,22 @@ public class HomePage extends BasePage {
         }
     }
 
+    public void getProductNameAndPriceFromPage() {
+        String nameOnPage = driver.findElement(productNameOnPage).getText();
+        product.setProductName(nameOnPage);
+        String priceOnPage = driver.findElement(productPriceOnPage).getText();
+        product.setProductPrice(priceOnPage);
+    }
+
     public void goToCart() {
         driver.findElement(cartWithProduct).click();
+    }
+
+    public void validateProductNameAndPrice() {
+        String checkProductName = driver.findElement(checkName).getText();
+        assertThat(checkProductName).isEqualTo(product.productName);
+        String checkProductPrice = driver.findElement(checkPrice).getText();
+        assertThat(checkProductPrice).isEqualTo(product.productPrice);
     }
 
     public void clickInCartContinueButton() {

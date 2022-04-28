@@ -1,6 +1,5 @@
 package basicProject;
 
-import basicProject.models.Product;
 import basicProject.models.User;
 import basicProject.pages.BasePage;
 import basicProject.pages.HomePage;
@@ -10,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.After;
 
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class FinalProjectBasicLevel {
 
@@ -19,7 +17,6 @@ public class FinalProjectBasicLevel {
     SearchPage searchPage = new SearchPage();
     ShippingPage shippingPage = new ShippingPage();
 
-    static Product product = new Product();
     User user = new User();
 
     @Before
@@ -34,25 +31,20 @@ public class FinalProjectBasicLevel {
         searchPage.clickOnSearchButton();
         homePage.scrollDownPage();
         homePage.chooseBeatsStudioProduct();
-        product.setProductName();
-        product.setProductPrice();
         homePage.scrollDownPage();
         homePage.addProductToCart();
+        homePage.getProductNameAndPriceFromPage();
         homePage.goToCart();
-        assertThat(product.getProductName()).isEqualTo("Bezvadu austiņas Beats Studio3 Wireless, zila");
-        assertThat(product.getProductPrice()).isEqualTo("288,97 €");
+        homePage.validateProductNameAndPrice();
         homePage.clickInCartContinueButton();
         homePage.scrollDownPage();
         homePage.enterAuthenticationData("workjob@inbox.lv", "FinalProject2022");
         homePage.clickContinueButton();
         shippingPage.chooseShippingType("Saņemšana klientu centrā");
         shippingPage.chooseStoreAddress("Lucavsalas 3");
-        shippingPage.enterUserInformation(user.getUserName(), user.getUserSurname(), user.getUserPhone());
-        assertThat(user.getUserName()).isEqualTo("Alina");
-        assertThat(user.getUserSurname()).isEqualTo("K");
-        assertThat(user.getUserPhone()).isEqualTo("23456789");
+        shippingPage.enterAndValidateUserInformation(user.getUserName(), user.getUserSurname(), user.getUserPhone());
         shippingPage.scrollUpPage();
-        assertThat(product.getProductPrice()).isEqualTo("288,97 €");
+        shippingPage.validateFinalProductPrice();
         shippingPage.validateShippingPageUrl();
     }
 
