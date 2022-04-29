@@ -32,9 +32,9 @@ public class FinalProjectBasicLevel {
         homePage.chooseBeatsStudioProduct();
         homePage.scrollDownPage();
         homePage.addProductToCart();
-        homePage.getProductNameAndPriceFromPage();
+        basePage.getAndSetProductNameAndPriceFromPage();
         homePage.goToCart();
-        homePage.validateProductNameAndPrice();
+        basePage.validateProductNameAndPrice();
         homePage.clickInCartContinueButton();
         homePage.scrollDownPage();
         homePage.enterAuthenticationData("workjob@inbox.lv", "FinalProject2022");
@@ -43,7 +43,7 @@ public class FinalProjectBasicLevel {
         shippingPage.chooseStoreAddress("Lucavsalas 3");
         shippingPage.enterAndValidateUserInformation(user.getUserName(), user.getUserSurname(), user.getUserPhone());
         shippingPage.scrollUpPage();
-        shippingPage.validateFinalProductPrice();
+        basePage.validateFinalProductPrice();
         shippingPage.validateShippingPageUrl();
     }
 
